@@ -5,7 +5,12 @@ class Post < ApplicationRecord
 
   belongs_to :user
 
-  def destroy
-    update(deleted_at: Time.current)
-  end
+  has_many :comments
+  has_many :post_category_ships
+  has_many :categories, through: :post_category_ships
+
+
+  # def destroy
+  #   update(deleted_at: Time.current)
+  # end
 end
