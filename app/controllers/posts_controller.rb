@@ -37,8 +37,11 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post.destroy
-    flash[:notice] = 'Post destroyed successfully'
+    if @post.destroy
+      flash[:notice] = 'Post destroyed successfully'
+    else
+      flash[:notice] = @post.errors.full_messages.join(', ')
+    end
     redirect_to posts_path
   end
 
