@@ -4,6 +4,7 @@
   <thead>
     <td>Title</td>
     <td>Content</td>
+    <td>category</td>
     <td>User</td>
     <td>Address</td>
   </thead>
@@ -11,6 +12,7 @@
     <tr>
       <td><%= post.title %></td>
       <td><%= post.content %></td>
+      <td><%= post.categories.pluck(:name).join(',') %></td>
       <td><%= post.user&.email %></td>
       <td><%= post.address %></td>
 
@@ -26,3 +28,4 @@
 </table>
 <%= paginate @posts %>
 <%= link_to 'New', new_post_path %>
+<%= link_to 'Category', categories_path %>
