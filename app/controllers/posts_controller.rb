@@ -9,9 +9,13 @@ class PostsController < ApplicationController
   end
 
   def create
-    post = Post.new(params[:post].permit(:title, :content, :address))
-    if post.save
+    @post = Post.new(params[:post].permit(:title, :content, :address))
+    if @post.save
+      flash[:notice] = 'Post created successfully'
       redirect_to posts_path
+    else
+      flash.now[:alert] = 'Post create failed'
+      render :new, status: :unprocessable_entity
     end
   end
 end
