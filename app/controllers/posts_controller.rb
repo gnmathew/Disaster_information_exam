@@ -5,7 +5,7 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.includes(:categories).all
-    @posts = Post.includes( :user).page(params[:page]).per(5)
+    @posts = Post.order(comments_count: :desc).includes(:categories, :user).page(params[:page]).per(5)
   end
 
   def new
@@ -62,4 +62,5 @@ class PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:title, :content, :address, :image, category_ids: [])
   end
+
 end
