@@ -7,6 +7,7 @@
     <td>Category</td>
     <td>User</td>
     <td>Address</td>
+    <td>Image</td>
   </thead>
   <% @posts.each do |post| %>
     <tr>
@@ -15,6 +16,7 @@
       <td><%= post.categories.pluck(:name).join(',') %></td>
       <td><%= post.user&.email %></td>
       <td><%= post.address %></td>
+      <td><%= image_tag post.image.url if post.image.present? %></td>
 
       <td>
         <%= link_to 'Show', post_path(post) %>
