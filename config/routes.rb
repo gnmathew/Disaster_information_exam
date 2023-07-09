@@ -4,6 +4,12 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root 'posts#index'
+
+  namespace :user do
+    resources :post, only: [:index, :edit, :update]
+    resources :comments
+  end
+
   resources :posts do
     resources :comments, except: :show
   end
