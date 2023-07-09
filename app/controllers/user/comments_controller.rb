@@ -20,7 +20,7 @@ class User::CommentsController < ApplicationController
 
     private
 
-    def set_post
+    def set_comment
       @comment = Comment.find(params[:id])
     end
 
@@ -28,5 +28,4 @@ class User::CommentsController < ApplicationController
       params.require(:comment).permit(:content)
     end
     
-end
 end
