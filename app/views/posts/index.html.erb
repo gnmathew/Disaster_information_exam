@@ -11,6 +11,7 @@
     <td>Content</td>
     <td>Category</td>
     <td>User</td>
+    <td>Comments count</td>
     <td>Address</td>
     <td>Image</td>
   </thead>
@@ -20,6 +21,7 @@
       <td><%= post.content %></td>
       <td><%= post.categories.pluck(:name).join(',') %></td>
       <td><%= post.user&.email %></td>
+      <td><%= post.comments_count %></td>
       <td><%= post.address %></td>
       <td><%= image_tag post.image.url if post.image.present? %></td>
 
