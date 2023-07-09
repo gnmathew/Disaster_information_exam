@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   root 'posts#index'
 
   namespace :user do
-    resources :post, only: [:index, :edit, :update]
+    resources :posts
     resources :comments
   end
 
