@@ -3,8 +3,10 @@
 <% else %>
   <%= link_to 'sign in', new_user_session_path %>
 <% end %>
-<h1>Disaster List & Information</h1>
 
+<% top_posts = @posts.order(comments_count: :desc).limit(3) %>
+
+<h1>Disaster List & Information</h1>
 <table>
   <thead>
     <td>Title</td>
@@ -15,13 +17,23 @@
     <td>Address</td>
     <td>Image</td>
   </thead>
+
   <% @posts.each do |post| %>
     <tr>
-      <td><%= post.title %></td>
+      <td>
+          <%= post.title %>
+      </td>
       <td><%= post.content %></td>
       <td><%= post.categories.pluck(:name).join(',') %></td>
       <td><%= post.user&.email %></td>
-      <td><%= post.comments_count %></td>
+      <td>
+      <% if top_posts.include?(post) && params[:page].to_i == 0 %>
+        <span 
+          class="tag" style="background-color: orange">HOT
+      <% end %>
+      <%= post.comments_count %>
+        </span>
+      </td>
       <td><%= post.address %></td>
       <td><%= image_tag post.image.url if post.image.present? %></td>
 
